@@ -4,7 +4,8 @@ FROM ubuntu
 RUN apt update && apt install apache2 -y
 
 # Copy the content from the host machine to the container's web directory
-COPY var/www/html/ /var/www/html/
+COPY index.html /var/www/html/
+
 
 # Set the entrypoint to run Apache in the foreground
 ENTRYPOINT ["apachectl", "-D", "FOREGROUND"]
