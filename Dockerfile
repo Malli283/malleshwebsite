@@ -1,14 +1,11 @@
-# Use the official Ubuntu base image
-FROM ubuntu:latest
+FROM ubuntu
 
-# Update the package repository and install Apache
-RUN apt-get update && apt-get install -y apache2
+# Update package lists and install Apache
+RUN apt update && apt install apache2 -y
 
-# Copy the content from the local directory to the container
+# Copy the content from the host machine to the container's web directory
 COPY ./var/www/html/ /var/www/html/
 
-# Expose the default port for Apache
-EXPOSE 80
-
-# Set the entry point to run Apache in the foreground
+# Set the entrypoint to run Apache in the foreground
 ENTRYPOINT ["apachectl", "-D", "FOREGROUND"]
+
